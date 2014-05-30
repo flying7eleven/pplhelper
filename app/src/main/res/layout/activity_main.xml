@@ -4,4 +4,11 @@
                 android:layout_height="match_parent"
                 tools:context=".activities.MainActivity">
 
+    <fragment
+            android:name=".fragments.FlightTimeCalculationFragment"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            tools:layout="@layout/fragment_flighttimecalc"/>
+
 </RelativeLayout>
