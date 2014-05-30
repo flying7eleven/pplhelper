@@ -1,7 +1,74 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              tools:context="com.halcyonwaves.apps.pplhelper.fragments.FlightTimeCalculationFragment">
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context="com.halcyonwaves.apps.pplhelper.fragments.FlightTimeCalculationFragment">
 
-</LinearLayout>
+    <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView
+                android:layout_weight="0.2"
+                android:text="Flight hours (before):"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+
+        <EditText
+                android:layout_weight="0.8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editFlightHoursBrefore"
+                android:inputType="numberDecimal"/>
+    </TableRow>
+
+    <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView
+                android:layout_weight="0.2"
+                android:text="Flight hours (after):"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+
+        <EditText
+                android:layout_weight="0.8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editFlightHoursAfter"
+                android:inputType="numberDecimal"/>
+    </TableRow>
+
+    <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView
+                android:layout_weight="0.2"
+                android:text="Start time (local):"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+
+        <EditText
+                android:layout_weight="0.8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editLocalStartTime"
+                android:inputType="time"/>
+    </TableRow>
+
+    <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <Button
+                android:layout_weight="1.0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/buttonCalcInformation"
+                android:text="Calculate information"/>
+    </TableRow>
+
+
+</TableLayout>
