@@ -9,10 +9,10 @@ import android.view.ViewGroup;
 import com.halcyonwaves.apps.pplhelper.R;
 
 public class FlightTimeCalculationResultsFragment extends Fragment {
-	private static final String ARG_HOURS_BEFORE_FLIGHT = "param1";
-	private static final String ARG_HOURS_AFTER_FLIGHT = "param2";
-	private static final String ARG_TAKEOFF_TIME_HOURS = "param2";
-	private static final String ARG_TAKEOFF_TIME_MINUTES = "param2";
+	private static final String ARG_HOURS_BEFORE_FLIGHT = "hoursBeforeFlight";
+	private static final String ARG_HOURS_AFTER_FLIGHT = "hoursAfterFlight";
+	private static final String ARG_TAKEOFF_TIME_HOURS = "takeoffTimeHours";
+	private static final String ARG_TAKEOFF_TIME_MINUTES = "takeoffTimeMinutes";
 
 	private float mHoursBeforeFlight;
 	private float mHoursAfterFlight;
