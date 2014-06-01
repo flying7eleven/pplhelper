@@ -19,11 +19,35 @@
             android:inputType="numberDecimal"
             android:hint="@string/flight_hours_after"/>
 
-    <EditText
+    <LinearLayout
+            android:id="@+id/from_row"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editLocalStartTime"
-            android:inputType="time"
-            android:hint="@string/takeoff_time_local"/>
+            android:minHeight="64dip">
 
+        <TextView
+                android:id="@+id/from_label"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:text="@string/takeoff_time_local"
+                style="@style/TextAppearance.EditEvent_LabelSmall"/>
+
+        <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="-6dip"
+                android:animateLayoutChanges="false">
+
+            <Button
+                    android:id="@+id/start_time"
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:layout_marginLeft="0dip"
+                    android:text="12:00"
+                    style="@style/TextAppearance.EditEvent_SpinnerButton"/>
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>
