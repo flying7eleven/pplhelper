@@ -19,8 +19,8 @@
     <application
             android:allowBackup="true"
             android:icon="@drawable/ic_launcher"
-            android:theme="@android:style/Theme.Holo.Light"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Holo.Light">
         <activity
                 android:name=".activities.FlightTimeCalculationActivity"
                 android:label="@string/app_name">
@@ -29,6 +29,13 @@
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity
+                android:name=".activities.FlightTimeCalculationResultsActivity"
+                android:parentActivityName=".activities.FlightTimeCalculationActivity">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="com.halcyonwaves.apps.pplhelper.activities.FlightTimeCalculationActivity"/>
         </activity>
     </application>
 
