@@ -5,40 +5,25 @@
               tools:context="com.halcyonwaves.apps.pplhelper.fragments.FlightTimeCalculationFragment"
               android:orientation="vertical">
 
-    <TextView
-            android:text="@string/flight_hours_before"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"/>
-
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/editFlightHoursBrefore"
             android:inputType="numberDecimal"
-            android:layout_marginBottom="@dimen/control_package_bottom_margin"/>
-
-    <TextView
-            android:text="@string/flight_hours_after"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"/>
+            android:hint="@string/flight_hours_before"/>
 
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/editFlightHoursAfter"
             android:inputType="numberDecimal"
-            android:layout_marginBottom="@dimen/control_package_bottom_margin"/>
-
-    <TextView
-            android:text="@string/takeoff_time_local"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"/>
+            android:hint="@string/flight_hours_after"/>
 
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/editLocalStartTime"
             android:inputType="time"
-            android:layout_marginBottom="@dimen/control_package_bottom_margin"/>
+            android:hint="@string/takeoff_time_local"/>
 
 </LinearLayout>

@@ -2,8 +2,8 @@
 <resources>
 
     <string name="app_name">PPL Helper</string>
-    <string name="flight_hours_before">Flight hours (before):</string>
-    <string name="flight_hours_after">Flight hours (after):</string>
-    <string name="takeoff_time_local">Takeoff time (local):</string>
+    <string name="flight_hours_before">Flight hours (before)</string>
+    <string name="flight_hours_after">Flight hours (after)</string>
+    <string name="takeoff_time_local">Takeoff time (local)</string>
 
 </resources>
