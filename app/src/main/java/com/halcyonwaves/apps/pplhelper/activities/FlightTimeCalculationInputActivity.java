@@ -7,21 +7,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.halcyonwaves.apps.pplhelper.R;
-import com.halcyonwaves.apps.pplhelper.fragments.FlightTimeCalculationFragment;
+import com.halcyonwaves.apps.pplhelper.fragments.FlightTimeCalculationInputFragment;
 
 
-public class FlightTimeCalculationActivity extends Activity {
+public class FlightTimeCalculationInputActivity extends Activity {
 	@Override
 	protected void onCreate( Bundle savedInstanceState ) {
 		super.onCreate( savedInstanceState );
-		this.setContentView( R.layout.activity_main );
+		this.setContentView( R.layout.activity_flight_time_calculation_input );
 
 		// set the default preferences
 		PreferenceManager.setDefaultValues( this, R.xml.prefs, false );
 
 		// if we're not resuming from a stored state, show the fragment content of the main fragment
 		if ( savedInstanceState == null ) {
-			this.getFragmentManager().beginTransaction().add( R.id.container, new FlightTimeCalculationFragment() ).commit();
+			this.getFragmentManager().beginTransaction().add( R.id.container, new FlightTimeCalculationInputFragment() ).commit();
 		}
 	}
 
