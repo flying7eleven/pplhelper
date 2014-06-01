@@ -10,11 +10,11 @@ import com.halcyonwaves.apps.pplhelper.fragments.FlightTimeCalculationInputFragm
 import com.halcyonwaves.apps.pplhelper.fragments.FlightTimeCalculationResultsFragment;
 
 
-public class FlightTimeCalculationInputActivity extends Activity implements FlightTimeCalculationInputFragment.OnFragmentInteractionListener {
+public class FlightTimeCalculationActivity extends Activity implements FlightTimeCalculationInputFragment.OnFragmentInteractionListener {
 	@Override
 	protected void onCreate( Bundle savedInstanceState ) {
 		super.onCreate( savedInstanceState );
-		this.setContentView( R.layout.activity_flight_time_calculation_input );
+		this.setContentView( R.layout.activity_flight_time_calculation );
 
 		// set the default preferences
 		PreferenceManager.setDefaultValues( this, R.xml.prefs, false );
