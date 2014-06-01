@@ -9,7 +9,7 @@ import com.halcyonwaves.apps.pplhelper.R;
 import com.halcyonwaves.apps.pplhelper.fragments.FlightTimeCalculationFragment;
 
 
-public class MainActivity extends Activity {
+public class FlightTimeCalculationActivity extends Activity {
 	@Override
 	protected void onCreate( Bundle savedInstanceState ) {
 		super.onCreate( savedInstanceState );
