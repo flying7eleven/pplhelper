@@ -2,6 +2,7 @@ package com.halcyonwaves.apps.pplhelper.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -16,7 +17,7 @@ public class FlightTimeCalculationActivity extends Activity {
 		this.setContentView( R.layout.activity_main );
 
 		// set the default preferences
-		//PreferenceManager.setDefaultValues( this, R.xml.prefs, false );
+		PreferenceManager.setDefaultValues( this, R.xml.prefs, false );
 
 		// if we're not resuming from a stored state, show the fragment content of the main fragment
 		if ( savedInstanceState == null ) {
