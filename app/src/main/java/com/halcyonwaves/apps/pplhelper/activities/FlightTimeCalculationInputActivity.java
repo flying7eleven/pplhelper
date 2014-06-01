@@ -10,7 +10,7 @@ import com.halcyonwaves.apps.pplhelper.R;
 import com.halcyonwaves.apps.pplhelper.fragments.FlightTimeCalculationInputFragment;
 
 
-public class FlightTimeCalculationInputActivity extends Activity {
+public class FlightTimeCalculationInputActivity extends Activity implements FlightTimeCalculationInputFragment.OnFragmentInteractionListener {
 	@Override
 	protected void onCreate( Bundle savedInstanceState ) {
 		super.onCreate( savedInstanceState );
@@ -35,4 +35,18 @@ public class FlightTimeCalculationInputActivity extends Activity {
 		this.getMenuInflater().inflate( R.menu.menu_form_entry, menu );
 		return super.onCreateOptionsMenu( menu );
 	}
+
+	/**
+	 * Method for receiving information which were entered in the  {@link FlightTimeCalculationInputFragment}
+	 * fragment.
+	 *
+	 * @param hoursBeforeFlight The running hours of the engine before the flight.
+	 * @param hoursAfterFlight  The running ours of the engine after the flight.
+	 * @param takeoffTimeHour   The hour of the takeoff.
+	 * @param takeoffTimeMinute The minute of the takeoff.
+	 */
+	public void onFragmentInteraction( float hoursBeforeFlight, float hoursAfterFlight, int takeoffTimeHour, int takeoffTimeMinute ) {
+
+	}
+
 }

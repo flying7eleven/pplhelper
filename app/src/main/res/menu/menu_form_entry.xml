@@ -2,7 +2,7 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-            android:id="@+id/ready"
+            android:id="@+id/menu_calculate_results"
             android:title="@string/calculate_results"
             android:showAsAction="always|withText"/>
 </menu>
