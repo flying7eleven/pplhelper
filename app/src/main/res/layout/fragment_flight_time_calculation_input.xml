@@ -50,4 +50,10 @@
                     style="@style/TextAppearance.EditEvent_SpinnerButton"/>
         </LinearLayout>
     </LinearLayout>
+
+    <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/calculate_results"
+            android:id="@+id/calculate_results"/>
 </LinearLayout>

@@ -1,13 +1,14 @@
 package com.halcyonwaves.apps.pplhelper.activities;
 
 import android.app.Activity;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Menu;
-import android.view.MenuItem;
 
 import com.halcyonwaves.apps.pplhelper.R;
 import com.halcyonwaves.apps.pplhelper.fragments.FlightTimeCalculationInputFragment;
+import com.halcyonwaves.apps.pplhelper.fragments.FlightTimeCalculationResultsFragment;
 
 
 public class FlightTimeCalculationInputActivity extends Activity implements FlightTimeCalculationInputFragment.OnFragmentInteractionListener {
@@ -18,22 +19,6 @@ public class FlightTimeCalculationInputActivity extends Activity implements Flig
 
 		// set the default preferences
 		PreferenceManager.setDefaultValues( this, R.xml.prefs, false );
-
-		// if we're not resuming from a stored state, show the fragment content of the main fragment
-		if ( savedInstanceState == null ) {
-			this.getFragmentManager().beginTransaction().add( R.id.container, new FlightTimeCalculationInputFragment() ).commit();
-		}
-	}
-
-	@Override
-	public boolean onOptionsItemSelected( MenuItem item ) {
-		return super.onOptionsItemSelected( item );
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu( Menu menu ) {
-		this.getMenuInflater().inflate( R.menu.menu_form_entry, menu );
-		return super.onCreateOptionsMenu( menu );
 	}
 
 	/**
@@ -46,7 +31,26 @@ public class FlightTimeCalculationInputActivity extends Activity implements Flig
 	 * @param takeoffTimeMinute The minute of the takeoff.
 	 */
 	public void onFragmentInteraction( float hoursBeforeFlight, float hoursAfterFlight, int takeoffTimeHour, int takeoffTimeMinute ) {
+		FlightTimeCalculationResultsFragment articleFrag = null; //(FlightTimeCalculationResultsFragment)this.getFragmentManager().findFragmentById(R.id.flight_time_calculation_results);
 
+		// if the fragment is available, we're in two-pane layout where both fragments are visible,
+		if ( null != articleFrag ) {
+
+		}
+
+		// otherwise, we are in a one-pane layout and we have to bring up the new fragment
+		else {
+			FragmentTransaction transaction = this.getFragmentManager().beginTransaction();
+
+			FlightTimeCalculationResultsFragment newFragment = new FlightTimeCalculationResultsFragment();
+			Bundle args = new Bundle();
+			newFragment.setArguments( args );
+
+			transaction.replace( R.id.fragment_container, newFragment );
+			transaction.addToBackStack( null );
+
+			transaction.commit();
+		}
 	}
 
 }

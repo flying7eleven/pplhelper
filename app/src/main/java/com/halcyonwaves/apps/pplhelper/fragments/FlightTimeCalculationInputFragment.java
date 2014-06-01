@@ -4,9 +4,9 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.halcyonwaves.apps.pplhelper.R;
 
@@ -33,20 +33,17 @@ public class FlightTimeCalculationInputFragment extends Fragment {
 
 	@Override
 	public View onCreateView( LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState ) {
-		// Inflate the layout for this fragment
-		return inflater.inflate( R.layout.fragment_flight_time_calculation_input, container, false );
-	}
-
-	@Override
-	public boolean onOptionsItemSelected( MenuItem item ) {
-		switch ( item.getItemId() ) {
-			case R.id.menu_calculate_results:
-				if ( this.mListener != null ) {
-					this.mListener.onFragmentInteraction( 0.0f, 0.0f, 0, 0 );
+		View inflatedView = inflater.inflate( R.layout.fragment_flight_time_calculation_input, container, false );
+		Button calcResults = (Button) inflatedView.findViewById( R.id.calculate_results );
+		calcResults.setOnClickListener( new View.OnClickListener() {
+			@Override
+			public void onClick( View view ) {
+				if ( FlightTimeCalculationInputFragment.this.mListener != null ) {
+					FlightTimeCalculationInputFragment.this.mListener.onFragmentInteraction( 0.0f, 0.0f, 0, 0 );
 				}
-				break;
-		}
-		return super.onOptionsItemSelected( item );
+			}
+		} );
+		return inflatedView;
 	}
 
 	@Override
