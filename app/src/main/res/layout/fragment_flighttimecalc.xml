@@ -6,7 +6,7 @@
               android:orientation="vertical">
 
     <TextView
-            android:text="Flight hours (before):"
+            android:text="@string/flight_hours_before"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"/>
 
@@ -18,7 +18,7 @@
             android:layout_marginBottom="@dimen/control_package_bottom_margin"/>
 
     <TextView
-            android:text="Flight hours (after):"
+            android:text="@string/flight_hours_after"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"/>
 
@@ -30,7 +30,7 @@
             android:layout_marginBottom="@dimen/control_package_bottom_margin"/>
 
     <TextView
-            android:text="Start time (local):"
+            android:text="@string/takeoff_time_local"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"/>
 
