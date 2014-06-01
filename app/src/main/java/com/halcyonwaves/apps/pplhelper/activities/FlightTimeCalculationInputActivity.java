@@ -18,6 +18,25 @@ public class FlightTimeCalculationInputActivity extends Activity implements Flig
 
 		// set the default preferences
 		PreferenceManager.setDefaultValues( this, R.xml.prefs, false );
+
+		// check that the activity is using the layout version with the fragment_container FrameLayout (the one-pane layout)
+		if ( this.findViewById( R.id.fragment_container ) != null ) {
+
+			// however, if we're being restored from a previous state, then we don't need to do anything and should return or else
+			// we could end up with overlapping fragments
+			if ( savedInstanceState != null ) {
+				return;
+			}
+
+			// create a new Fragment to be placed in the activity layout
+			FlightTimeCalculationInputFragment firstFragment = FlightTimeCalculationInputFragment.newInstance();
+
+			// in case this activity was started with special instructions from an  Intent, pass the Intent's extras to the fragment as arguments
+			firstFragment.setArguments( getIntent().getExtras() );
+
+			// add the fragment to the 'fragment_container' FrameLayout
+			this.getFragmentManager().beginTransaction().add( R.id.fragment_container, firstFragment ).commit();
+		}
 	}
 
 	/**
