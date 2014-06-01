@@ -7,12 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.halcyonwaves.apps.pplhelper.R;
 
 public class FlightTimeCalculationInputFragment extends Fragment {
 	private OnFragmentInteractionListener mListener;
-
+	private TextView mFlightHoursBefore;
+	private TextView mFlightHoursAfter;
 
 	public FlightTimeCalculationInputFragment() {
 		// Required empty public constructor
@@ -33,8 +35,25 @@ public class FlightTimeCalculationInputFragment extends Fragment {
 
 	@Override
 	public View onCreateView( LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState ) {
+		// get the basic view of the fragment we're currently handling
 		View inflatedView = inflater.inflate( R.layout.fragment_flight_time_calculation_input, container, false );
+
+		// get some controls we need to setup their behaviour
 		Button calcResults = (Button) inflatedView.findViewById( R.id.calculate_results );
+		Button selectTakeoffTime = (Button) inflatedView.findViewById( R.id.takeoff_time );
+		this.mFlightHoursBefore = (TextView) inflatedView.findViewById( R.id.editFlightHoursBrefore );
+		this.mFlightHoursBefore = (TextView) inflatedView.findViewById( R.id.editFlightHoursAfter );
+
+		// setup the button which is used to select the takeoff time
+		selectTakeoffTime.setOnClickListener( new View.OnClickListener() {
+			@Override
+			public void onClick( View view ) {
+				TimePickerFragment newFragment = new TimePickerFragment();
+				newFragment.show( FlightTimeCalculationInputFragment.this.getFragmentManager(), "timePicker" );
+			}
+		} );
+
+		// setup what should happen if the user presses the calculate button
 		calcResults.setOnClickListener( new View.OnClickListener() {
 			@Override
 			public void onClick( View view ) {
@@ -43,6 +62,8 @@ public class FlightTimeCalculationInputFragment extends Fragment {
 				}
 			}
 		} );
+
+		// return the inflated view
 		return inflatedView;
 	}
 
