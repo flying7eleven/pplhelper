@@ -14,7 +14,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/editFlightHoursBrefore"
-            android:inputType="numberDecimal" />
+            android:inputType="numberDecimal"
+            android:layout_marginBottom="@dimen/control_package_bottom_margin"/>
 
     <TextView
             android:text="Flight hours (after):"
@@ -25,7 +26,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/editFlightHoursAfter"
-            android:inputType="numberDecimal"/>
+            android:inputType="numberDecimal"
+            android:layout_marginBottom="@dimen/control_package_bottom_margin"/>
 
     <TextView
             android:text="Start time (local):"
@@ -36,7 +38,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/editLocalStartTime"
-            android:inputType="time"/>
+            android:inputType="time"
+            android:layout_marginBottom="@dimen/control_package_bottom_margin"/>
 
     <Button
             android:layout_width="wrap_content"
