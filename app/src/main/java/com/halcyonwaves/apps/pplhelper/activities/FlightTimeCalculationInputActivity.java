@@ -41,9 +41,7 @@ public class FlightTimeCalculationInputActivity extends Activity implements Flig
 		else {
 			FragmentTransaction transaction = this.getFragmentManager().beginTransaction();
 
-			FlightTimeCalculationResultsFragment newFragment = new FlightTimeCalculationResultsFragment();
-			Bundle args = new Bundle();
-			newFragment.setArguments( args );
+			FlightTimeCalculationResultsFragment newFragment = FlightTimeCalculationResultsFragment.newInstance( hoursBeforeFlight, hoursAfterFlight, takeoffTimeHour, takeoffTimeMinute );
 
 			transaction.replace( R.id.fragment_container, newFragment );
 			transaction.addToBackStack( null );
