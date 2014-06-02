@@ -88,6 +88,12 @@ public class FlightTimeCalculationInputFragment extends Fragment {
 				float flightHoursBefore = Float.valueOf( FlightTimeCalculationInputFragment.this.mFlightHoursBefore.getText().toString() );
 				float flightHoursAfter = Float.valueOf( FlightTimeCalculationInputFragment.this.mFlightHoursAfter.getText().toString() );
 
+				// be sure that the number of hours after the flight is higher than before
+				if( flightHoursAfter <= flightHoursBefore ) {
+					// TODO: show a message why we cannot proceed here
+					return;
+				}
+
 				// since all required values were set, calculate the results and show them on the next fragment
 				if ( FlightTimeCalculationInputFragment.this.mListener != null ) {
 					FlightTimeCalculationInputFragment.this.mListener.onFragmentInteraction( flightHoursBefore, flightHoursAfter, 0, 0 );
