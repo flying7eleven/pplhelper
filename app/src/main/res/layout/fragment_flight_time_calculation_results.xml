@@ -1,7 +1,8 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
+             android:orientation="vertical"
              tools:context=".fragments.FlightTimeCalculationResultsFragment">
 
     <LinearLayout
@@ -31,4 +32,114 @@
         </LinearLayout>
     </LinearLayout>
 
-</FrameLayout>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="64dip">
+
+        <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:text="Takeoff time (UTC)"
+                style="@style/TextAppearance.EditEvent_LabelSmall"/>
+
+        <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="-6dip"
+                android:animateLayoutChanges="false">
+
+            <EditText
+                    android:id="@+id/takeoff_time_utc"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:enabled="false"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="64dip">
+
+        <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:text="Landing time (UTC):"
+                style="@style/TextAppearance.EditEvent_LabelSmall"/>
+
+        <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="-6dip"
+                android:animateLayoutChanges="false">
+
+            <EditText
+                    android:id="@+id/landing_time_utc"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:enabled="false"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="64dip">
+
+        <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:text="Off block at (UTC)"
+                style="@style/TextAppearance.EditEvent_LabelSmall"/>
+
+        <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="-6dip"
+                android:animateLayoutChanges="false">
+
+            <EditText
+                    android:id="@+id/off_block_time_utc"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:enabled="false"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="64dip">
+
+        <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:text="On block at (UTC)"
+                style="@style/TextAppearance.EditEvent_LabelSmall"/>
+
+        <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="-6dip"
+                android:animateLayoutChanges="false">
+
+            <EditText
+                    android:id="@+id/on_block_time_utc"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:enabled="false"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
