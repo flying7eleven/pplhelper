@@ -6,5 +6,6 @@
     <string name="flight_hours_after">Flight hours (after)</string>
     <string name="takeoff_time_local">Takeoff time (local)</string>
     <string name="calculate_results">Calculate results</string>
+    <string name="current_time">%1$02d:%2$02d</string>
 
 </resources>
