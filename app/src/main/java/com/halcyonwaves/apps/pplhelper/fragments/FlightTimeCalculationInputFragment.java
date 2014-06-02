@@ -2,19 +2,26 @@ package com.halcyonwaves.apps.pplhelper.fragments;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.halcyonwaves.apps.pplhelper.R;
+
+import java.util.Calendar;
 
 public class FlightTimeCalculationInputFragment extends Fragment {
 	private OnFragmentInteractionListener mListener;
 	private TextView mFlightHoursBefore;
 	private TextView mFlightHoursAfter;
+	private Button mSelectTakeoffTime;
+	private int mLastHourOfTheDay;
+	private int mLastMinute;
 
 	public FlightTimeCalculationInputFragment() {
 		// Required empty public constructor
@@ -40,16 +47,30 @@ public class FlightTimeCalculationInputFragment extends Fragment {
 
 		// get some controls we need to setup their behaviour
 		Button calcResults = (Button) inflatedView.findViewById( R.id.calculate_results );
-		Button selectTakeoffTime = (Button) inflatedView.findViewById( R.id.takeoff_time );
+		this.mSelectTakeoffTime = (Button) inflatedView.findViewById( R.id.takeoff_time );
 		this.mFlightHoursBefore = (TextView) inflatedView.findViewById( R.id.editFlightHoursBrefore );
 		this.mFlightHoursBefore = (TextView) inflatedView.findViewById( R.id.editFlightHoursAfter );
 
+		// get the current time
+		this.mLastHourOfTheDay = Calendar.getInstance().get( Calendar.HOUR_OF_DAY );
+		this.mLastMinute = Calendar.getInstance().get( Calendar.MINUTE );
+
+		// set the initial text for the time control
+		this.mSelectTakeoffTime.setText( String.format( this.getString( R.string.current_time ), this.mLastHourOfTheDay, this.mLastMinute ) );
+
 		// setup the button which is used to select the takeoff time
-		selectTakeoffTime.setOnClickListener( new View.OnClickListener() {
+		this.mSelectTakeoffTime.setOnClickListener( new View.OnClickListener() {
 			@Override
 			public void onClick( View view ) {
-				TimePickerFragment newFragment = new TimePickerFragment();
-				newFragment.show( FlightTimeCalculationInputFragment.this.getFragmentManager(), "timePicker" );
+				TimePickerDialog timePicker = new TimePickerDialog( FlightTimeCalculationInputFragment.this.getActivity(), new TimePickerDialog.OnTimeSetListener() {
+					@Override
+					public void onTimeSet( TimePicker view, int hourOfDay, int minute ) {
+						FlightTimeCalculationInputFragment.this.mLastHourOfTheDay = hourOfDay;
+						FlightTimeCalculationInputFragment.this.mLastMinute = minute;
+						FlightTimeCalculationInputFragment.this.mSelectTakeoffTime.setText( String.format( FlightTimeCalculationInputFragment.this.getString( R.string.current_time ), hourOfDay, minute ) );
+					}
+				}, FlightTimeCalculationInputFragment.this.mLastHourOfTheDay, FlightTimeCalculationInputFragment.this.mLastMinute, true );
+				timePicker.show();
 			}
 		} );
 
@@ -57,8 +78,19 @@ public class FlightTimeCalculationInputFragment extends Fragment {
 		calcResults.setOnClickListener( new View.OnClickListener() {
 			@Override
 			public void onClick( View view ) {
+				// check if the required values are set or not
+				if ( FlightTimeCalculationInputFragment.this.mFlightHoursBefore.getText().length() < 1 || FlightTimeCalculationInputFragment.this.mFlightHoursAfter.getText().length() < 1 ) {
+					// TODO: show a message why we cannot proceed here
+					return;
+				}
+
+				// convert the entered values to the format we want
+				float flightHoursBefore = Float.valueOf( FlightTimeCalculationInputFragment.this.mFlightHoursBefore.getText().toString() );
+				float flightHoursAfter = Float.valueOf( FlightTimeCalculationInputFragment.this.mFlightHoursAfter.getText().toString() );
+
+				// since all required values were set, calculate the results and show them on the next fragment
 				if ( FlightTimeCalculationInputFragment.this.mListener != null ) {
-					FlightTimeCalculationInputFragment.this.mListener.onFragmentInteraction( 0.0f, 0.0f, 0, 0 );
+					FlightTimeCalculationInputFragment.this.mListener.onFragmentInteraction( flightHoursBefore, flightHoursAfter, 0, 0 );
 				}
 			}
 		} );
