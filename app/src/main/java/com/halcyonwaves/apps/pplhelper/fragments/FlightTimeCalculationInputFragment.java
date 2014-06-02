@@ -49,7 +49,7 @@ public class FlightTimeCalculationInputFragment extends Fragment {
 		Button calcResults = (Button) inflatedView.findViewById( R.id.calculate_results );
 		this.mSelectTakeoffTime = (Button) inflatedView.findViewById( R.id.takeoff_time );
 		this.mFlightHoursBefore = (TextView) inflatedView.findViewById( R.id.editFlightHoursBrefore );
-		this.mFlightHoursBefore = (TextView) inflatedView.findViewById( R.id.editFlightHoursAfter );
+		this.mFlightHoursAfter = (TextView) inflatedView.findViewById( R.id.editFlightHoursAfter );
 
 		// get the current time
 		this.mLastHourOfTheDay = Calendar.getInstance().get( Calendar.HOUR_OF_DAY );
