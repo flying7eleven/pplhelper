@@ -10,6 +10,10 @@ import android.widget.EditText;
 import com.halcyonwaves.apps.pplhelper.FlightHours;
 import com.halcyonwaves.apps.pplhelper.R;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.TimeZone;
+
 public class FlightTimeCalculationResultsFragment extends Fragment {
 	private static final String ARG_HOURS_BEFORE_FLIGHT = "hoursBeforeFlight";
 	private static final String ARG_HOURS_AFTER_FLIGHT = "hoursAfterFlight";
@@ -18,8 +22,7 @@ public class FlightTimeCalculationResultsFragment extends Fragment {
 
 	private FlightHours mHoursBeforeFlight;
 	private FlightHours mHoursAfterFlight;
-	private int mTakeoffTimeHours;
-	private int mTakeoffTimeMinutes;
+	private Calendar mLocalTakeoffTime;
 
 	public FlightTimeCalculationResultsFragment() {
 		// Required empty public constructor
@@ -52,8 +55,9 @@ public class FlightTimeCalculationResultsFragment extends Fragment {
 		if ( this.getArguments() != null ) {
 			this.mHoursBeforeFlight = new FlightHours( getArguments().getString( ARG_HOURS_BEFORE_FLIGHT ) );
 			this.mHoursAfterFlight = new FlightHours( getArguments().getString( ARG_HOURS_AFTER_FLIGHT ) );
-			this.mTakeoffTimeHours = getArguments().getInt( ARG_TAKEOFF_TIME_HOURS );
-			this.mTakeoffTimeMinutes = getArguments().getInt( ARG_TAKEOFF_TIME_MINUTES );
+			this.mLocalTakeoffTime = new GregorianCalendar();
+			this.mLocalTakeoffTime.set( Calendar.HOUR_OF_DAY, getArguments().getInt( ARG_TAKEOFF_TIME_HOURS ) );
+			this.mLocalTakeoffTime.set( Calendar.MINUTE, getArguments().getInt( ARG_TAKEOFF_TIME_MINUTES ) );
 		}
 	}
 
@@ -63,9 +67,15 @@ public class FlightTimeCalculationResultsFragment extends Fragment {
 
 		//
 		EditText flightTimeResult = (EditText) inflatedView.findViewById( R.id.flight_time_result );
+		EditText takeoffTimeUTCResult = (EditText) inflatedView.findViewById( R.id.takeoff_time_utc );
+
+		//
+		Calendar takeoffTimeUTC = new GregorianCalendar( TimeZone.getTimeZone( "UTC" ) );
+		takeoffTimeUTC.setTimeInMillis( this.mLocalTakeoffTime.getTimeInMillis() );
 
 		//
 		flightTimeResult.setText( this.mHoursAfterFlight.difference( this.mHoursBeforeFlight ).toString() );
+		takeoffTimeUTCResult.setText( String.format( "%02d:%02d", takeoffTimeUTC.get( Calendar.HOUR_OF_DAY ), takeoffTimeUTC.get( Calendar.MINUTE ) ) );
 
 		//
 		return inflatedView;
