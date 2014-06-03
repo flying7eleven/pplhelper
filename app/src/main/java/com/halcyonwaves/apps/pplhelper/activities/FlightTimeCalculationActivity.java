@@ -5,6 +5,7 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 
+import com.halcyonwaves.apps.pplhelper.FlightHours;
 import com.halcyonwaves.apps.pplhelper.R;
 import com.halcyonwaves.apps.pplhelper.fragments.FlightTimeCalculationInputFragment;
 import com.halcyonwaves.apps.pplhelper.fragments.FlightTimeCalculationResultsFragment;
@@ -48,7 +49,7 @@ public class FlightTimeCalculationActivity extends Activity implements FlightTim
 	 * @param takeoffTimeHour   The hour of the takeoff.
 	 * @param takeoffTimeMinute The minute of the takeoff.
 	 */
-	public void onFragmentInteraction( float hoursBeforeFlight, float hoursAfterFlight, int takeoffTimeHour, int takeoffTimeMinute ) {
+	public void onFragmentInteraction( FlightHours hoursBeforeFlight, FlightHours hoursAfterFlight, int takeoffTimeHour, int takeoffTimeMinute ) {
 		FlightTimeCalculationResultsFragment articleFrag = null; //(FlightTimeCalculationResultsFragment)this.getFragmentManager().findFragmentById(R.id.flight_time_calculation_results);
 
 		// if the fragment is available, we're in two-pane layout where both fragments are visible,

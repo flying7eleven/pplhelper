@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.halcyonwaves.apps.pplhelper.FlightHours;
 import com.halcyonwaves.apps.pplhelper.R;
 
 import java.util.Calendar;
@@ -85,11 +86,11 @@ public class FlightTimeCalculationInputFragment extends Fragment {
 				}
 
 				// convert the entered values to the format we want
-				float flightHoursBefore = Float.valueOf( FlightTimeCalculationInputFragment.this.mFlightHoursBefore.getText().toString() );
-				float flightHoursAfter = Float.valueOf( FlightTimeCalculationInputFragment.this.mFlightHoursAfter.getText().toString() );
+				FlightHours flightHoursBefore = new FlightHours( FlightTimeCalculationInputFragment.this.mFlightHoursBefore.getText().toString() );
+				FlightHours flightHoursAfter = new FlightHours( FlightTimeCalculationInputFragment.this.mFlightHoursAfter.getText().toString() );
 
 				// be sure that the number of hours after the flight is higher than before
-				if( flightHoursAfter <= flightHoursBefore ) {
+				if ( !flightHoursAfter.after( flightHoursBefore ) ) {
 					// TODO: show a message why we cannot proceed here
 					return;
 				}
@@ -134,6 +135,6 @@ public class FlightTimeCalculationInputFragment extends Fragment {
 		 * @param takeoffTimeHour   The hour of the takeoff.
 		 * @param takeoffTimeMinute The minute of the takeoff.
 		 */
-		public void onFragmentInteraction( float hoursBeforeFlight, float hoursAfterFlight, int takeoffTimeHour, int takeoffTimeMinute );
+		public void onFragmentInteraction( FlightHours hoursBeforeFlight, FlightHours hoursAfterFlight, int takeoffTimeHour, int takeoffTimeMinute );
 	}
 }

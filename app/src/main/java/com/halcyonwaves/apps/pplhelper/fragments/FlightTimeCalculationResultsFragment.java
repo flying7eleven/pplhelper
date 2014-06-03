@@ -2,12 +2,13 @@ package com.halcyonwaves.apps.pplhelper.fragments;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.text.format.Time;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.TextView;
 
+import com.halcyonwaves.apps.pplhelper.FlightHours;
 import com.halcyonwaves.apps.pplhelper.R;
 
 public class FlightTimeCalculationResultsFragment extends Fragment {
@@ -16,8 +17,8 @@ public class FlightTimeCalculationResultsFragment extends Fragment {
 	private static final String ARG_TAKEOFF_TIME_HOURS = "takeoffTimeHours";
 	private static final String ARG_TAKEOFF_TIME_MINUTES = "takeoffTimeMinutes";
 
-	private float mHoursBeforeFlight;
-	private float mHoursAfterFlight;
+	private Time mHoursBeforeFlight;
+	private Time mHoursAfterFlight;
 	private int mTakeoffTimeHours;
 	private int mTakeoffTimeMinutes;
 
@@ -35,11 +36,11 @@ public class FlightTimeCalculationResultsFragment extends Fragment {
 	 * @param takeoffTimeMinutes TODO
 	 * @return A new instance of fragment FlightTimeCalculationResultsFragment.
 	 */
-	public static FlightTimeCalculationResultsFragment newInstance( float hoursBeforeFlight, float hoursAfterFlight, int takeoffTimeHours, int takeoffTimeMinutes ) {
+	public static FlightTimeCalculationResultsFragment newInstance( FlightHours hoursBeforeFlight, FlightHours hoursAfterFlight, int takeoffTimeHours, int takeoffTimeMinutes ) {
 		FlightTimeCalculationResultsFragment fragment = new FlightTimeCalculationResultsFragment();
 		Bundle args = new Bundle();
-		args.putFloat( ARG_HOURS_BEFORE_FLIGHT, hoursBeforeFlight );
-		args.putFloat( ARG_HOURS_AFTER_FLIGHT, hoursAfterFlight );
+		args.putString( ARG_HOURS_BEFORE_FLIGHT, hoursBeforeFlight.toString() );
+		args.putString( ARG_HOURS_AFTER_FLIGHT, hoursAfterFlight.toString() );
 		args.putInt( ARG_TAKEOFF_TIME_HOURS, takeoffTimeHours );
 		args.putInt( ARG_TAKEOFF_TIME_MINUTES, takeoffTimeMinutes );
 		fragment.setArguments( args );
@@ -50,8 +51,8 @@ public class FlightTimeCalculationResultsFragment extends Fragment {
 	public void onCreate( Bundle savedInstanceState ) {
 		super.onCreate( savedInstanceState );
 		if ( this.getArguments() != null ) {
-			this.mHoursBeforeFlight = getArguments().getFloat( ARG_HOURS_BEFORE_FLIGHT );
-			this.mHoursAfterFlight = getArguments().getFloat( ARG_HOURS_AFTER_FLIGHT );
+			this.mHoursBeforeFlight = new Time( getArguments().getString( ARG_HOURS_BEFORE_FLIGHT ) );
+			this.mHoursAfterFlight = new Time( getArguments().getString( ARG_HOURS_AFTER_FLIGHT ) );
 			this.mTakeoffTimeHours = getArguments().getInt( ARG_TAKEOFF_TIME_HOURS );
 			this.mTakeoffTimeMinutes = getArguments().getInt( ARG_TAKEOFF_TIME_MINUTES );
 		}
