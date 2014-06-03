@@ -9,14 +9,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/editFlightHoursBrefore"
-            android:inputType="numberDecimal"
+            android:inputType="time"
             android:hint="@string/flight_hours_before"/>
 
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/editFlightHoursAfter"
-            android:inputType="numberDecimal"
+            android:inputType="time"
             android:hint="@string/flight_hours_after"/>
 
     <LinearLayout
