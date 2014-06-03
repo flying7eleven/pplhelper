@@ -30,6 +30,10 @@ public class FlightHours {
 		return true; // TODO: implement this
 	}
 
+	public FlightHours difference( FlightHours other ) {
+		return new FlightHours( 0, 0 );
+	}
+
 	@Override
 	public String toString() {
 		return String.format( "%d:%02d", this.mFlightHours, this.mFlightMinutes );

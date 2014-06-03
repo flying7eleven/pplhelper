@@ -65,7 +65,7 @@ public class FlightTimeCalculationResultsFragment extends Fragment {
 		EditText flightTimeResult = (EditText) inflatedView.findViewById( R.id.flight_time_result );
 
 		//
-		flightTimeResult.setText( "" );
+		flightTimeResult.setText( this.mHoursAfterFlight.difference( this.mHoursBeforeFlight ).toString() );
 
 		//
 		return inflatedView;
