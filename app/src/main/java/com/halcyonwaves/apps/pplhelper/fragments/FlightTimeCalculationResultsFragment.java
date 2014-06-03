@@ -2,7 +2,6 @@ package com.halcyonwaves.apps.pplhelper.fragments;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.text.format.Time;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +16,8 @@ public class FlightTimeCalculationResultsFragment extends Fragment {
 	private static final String ARG_TAKEOFF_TIME_HOURS = "takeoffTimeHours";
 	private static final String ARG_TAKEOFF_TIME_MINUTES = "takeoffTimeMinutes";
 
-	private Time mHoursBeforeFlight;
-	private Time mHoursAfterFlight;
+	private FlightHours mHoursBeforeFlight;
+	private FlightHours mHoursAfterFlight;
 	private int mTakeoffTimeHours;
 	private int mTakeoffTimeMinutes;
 
@@ -51,8 +50,8 @@ public class FlightTimeCalculationResultsFragment extends Fragment {
 	public void onCreate( Bundle savedInstanceState ) {
 		super.onCreate( savedInstanceState );
 		if ( this.getArguments() != null ) {
-			this.mHoursBeforeFlight = new Time( getArguments().getString( ARG_HOURS_BEFORE_FLIGHT ) );
-			this.mHoursAfterFlight = new Time( getArguments().getString( ARG_HOURS_AFTER_FLIGHT ) );
+			this.mHoursBeforeFlight = new FlightHours( getArguments().getString( ARG_HOURS_BEFORE_FLIGHT ) );
+			this.mHoursAfterFlight = new FlightHours( getArguments().getString( ARG_HOURS_AFTER_FLIGHT ) );
 			this.mTakeoffTimeHours = getArguments().getInt( ARG_TAKEOFF_TIME_HOURS );
 			this.mTakeoffTimeMinutes = getArguments().getInt( ARG_TAKEOFF_TIME_MINUTES );
 		}
