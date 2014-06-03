@@ -24,6 +24,11 @@ public class FlightHours {
 		} else {
 			this.mFlightMinutes = 0;
 		}
+
+		// it makes no sense if the user entered a minute value bigger than 59 (it would then be an hour)
+		if ( this.mFlightMinutes > 59 ) {
+			return; // TODO: throw an exceptions
+		}
 	}
 
 	public boolean after( FlightHours other ) {
@@ -31,7 +36,21 @@ public class FlightHours {
 	}
 
 	public FlightHours difference( FlightHours other ) {
-		return new FlightHours( 0, 0 );
+		int newHours = this.mFlightHours - other.mFlightHours;
+		int newMinutes = this.mFlightMinutes - other.mFlightMinutes;
+		if ( newMinutes < 0 ) {
+			newMinutes = 60 + newMinutes;
+			newHours -= 1;
+		}
+
+		// be sure that the correct way of comparing the object was used
+		if ( newHours < 0 ) {
+			// TODO: throw an exception
+		}
+
+
+		// return the new flight hours object
+		return new FlightHours( newHours, newMinutes );
 	}
 
 	@Override
