@@ -68,14 +68,38 @@ public class FlightTimeCalculationResultsFragment extends Fragment {
 		//
 		EditText flightTimeResult = (EditText) inflatedView.findViewById( R.id.flight_time_result );
 		EditText takeoffTimeUTCResult = (EditText) inflatedView.findViewById( R.id.takeoff_time_utc );
+		EditText landingTimeUTCResult = (EditText) inflatedView.findViewById( R.id.landing_time_utc );
+		EditText offBlockTimeUTCResult = (EditText) inflatedView.findViewById( R.id.off_block_time_utc );
+		EditText onBlockTimeUTCResult = (EditText) inflatedView.findViewById( R.id.on_block_time_utc );
 
 		//
 		Calendar takeoffTimeUTC = new GregorianCalendar( TimeZone.getTimeZone( "UTC" ) );
 		takeoffTimeUTC.setTimeInMillis( this.mLocalTakeoffTime.getTimeInMillis() );
 
 		//
-		flightTimeResult.setText( this.mHoursAfterFlight.difference( this.mHoursBeforeFlight ).toString() );
+		FlightHours flightTime = this.mHoursAfterFlight.difference( this.mHoursBeforeFlight );
+
+		//
+		Calendar landingTimeUTC = (Calendar) takeoffTimeUTC.clone();
+		landingTimeUTC.add( Calendar.HOUR_OF_DAY, flightTime.getHours() );
+		landingTimeUTC.add( Calendar.MINUTE, flightTime.getMinutes() );
+
+		//
+		Calendar offBlockTimeUTC = (Calendar) takeoffTimeUTC.clone();
+		offBlockTimeUTC.add( Calendar.MINUTE, -10 );
+
+		//
+		Calendar onBlockTimeUTC = (Calendar) landingTimeUTC.clone();
+		onBlockTimeUTC.add( Calendar.MINUTE, 5 );
+
+		//
+		flightTimeResult.setText( flightTime.toString() );
+
+		//
 		takeoffTimeUTCResult.setText( String.format( "%02d:%02d", takeoffTimeUTC.get( Calendar.HOUR_OF_DAY ), takeoffTimeUTC.get( Calendar.MINUTE ) ) );
+		landingTimeUTCResult.setText( String.format( "%02d:%02d", landingTimeUTC.get( Calendar.HOUR_OF_DAY ), landingTimeUTC.get( Calendar.MINUTE ) ) );
+		offBlockTimeUTCResult.setText( String.format( "%02d:%02d", offBlockTimeUTC.get( Calendar.HOUR_OF_DAY ), offBlockTimeUTC.get( Calendar.MINUTE ) ) );
+		onBlockTimeUTCResult.setText( String.format( "%02d:%02d", onBlockTimeUTC.get( Calendar.HOUR_OF_DAY ), onBlockTimeUTC.get( Calendar.MINUTE ) ) );
 
 		//
 		return inflatedView;
