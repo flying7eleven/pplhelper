@@ -13,13 +13,17 @@ public class FlightHours {
 	public FlightHours( String flightHours ) {
 		// parse the flight hour string
 		String[] parts = flightHours.split( ":" );
-		if ( parts.length != 2 ) {
+		if ( null == parts || parts.length < 1 || parts.length > 2 ) {
 			return; // TODO: throw an exception
 		}
 
 		// set the corresponding values
 		this.mFlightHours = Integer.parseInt( parts[ 0 ] );
-		this.mFlightMinutes = Integer.parseInt( parts[ 1 ] );
+		if ( parts.length > 1 ) {
+			this.mFlightMinutes = Integer.parseInt( parts[ 1 ] );
+		} else {
+			this.mFlightMinutes = 0;
+		}
 	}
 
 	public boolean after( FlightHours other ) {
