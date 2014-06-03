@@ -31,6 +31,14 @@ public class FlightHours {
 		}
 	}
 
+	public int getHours() {
+		return this.mFlightHours;
+	}
+
+	public int getMinutes() {
+		return this.mFlightMinutes;
+	}
+
 	public boolean after( FlightHours other ) {
 		return true; // TODO: implement this
 	}
