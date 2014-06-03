@@ -97,7 +97,7 @@ public class FlightTimeCalculationInputFragment extends Fragment {
 
 				// since all required values were set, calculate the results and show them on the next fragment
 				if ( FlightTimeCalculationInputFragment.this.mListener != null ) {
-					FlightTimeCalculationInputFragment.this.mListener.onFragmentInteraction( flightHoursBefore, flightHoursAfter, 0, 0 );
+					FlightTimeCalculationInputFragment.this.mListener.onFragmentInteraction( flightHoursBefore, flightHoursAfter, FlightTimeCalculationInputFragment.this.mLastHourOfTheDay, FlightTimeCalculationInputFragment.this.mLastMinute );
 				}
 			}
 		} );
