@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.halcyonwaves.apps.pplhelper"
-          android:installLocation="internalOnly">
+          package="com.halcyonwaves.apps.pplhelper">
 
     <!-- define which OS and screen requirement this application has -->
     <uses-sdk
