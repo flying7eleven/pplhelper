@@ -43,6 +43,19 @@ public class FlightHours {
 		return true; // TODO: implement this
 	}
 
+	public void addMinutes( int minutesToAdd ) {
+		if ( minutesToAdd > 59 ) {
+			return; // TODO: throw an exception
+		}
+
+		if ( this.mFlightMinutes + minutesToAdd > 60 ) {
+			this.mFlightHours++;
+			this.mFlightMinutes = ( this.mFlightMinutes + minutesToAdd ) - 60;
+		} else {
+			this.mFlightMinutes += minutesToAdd;
+		}
+	}
+
 	public FlightHours difference( FlightHours other ) {
 		int newHours = this.mFlightHours - other.mFlightHours;
 		int newMinutes = this.mFlightMinutes - other.mFlightMinutes;
