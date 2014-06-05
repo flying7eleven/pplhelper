@@ -67,6 +67,7 @@ public class FlightTimeCalculationResultsFragment extends Fragment {
 
 		//
 		EditText flightTimeResult = (EditText) inflatedView.findViewById( R.id.flight_time_result );
+		EditText blockTimeResult = (EditText) inflatedView.findViewById( R.id.block_time_result );
 		EditText takeoffTimeUTCResult = (EditText) inflatedView.findViewById( R.id.takeoff_time_utc );
 		EditText landingTimeUTCResult = (EditText) inflatedView.findViewById( R.id.landing_time_utc );
 		EditText offBlockTimeUTCResult = (EditText) inflatedView.findViewById( R.id.off_block_time_utc );
@@ -78,6 +79,8 @@ public class FlightTimeCalculationResultsFragment extends Fragment {
 
 		//
 		FlightHours flightTime = this.mHoursAfterFlight.difference( this.mHoursBeforeFlight );
+		FlightHours blockTime = this.mHoursAfterFlight.difference( this.mHoursBeforeFlight );
+		blockTime.addMinutes( 10 + 5 ); // add 10 minutes before and 5 minutes after for the block time
 
 		//
 		Calendar landingTimeUTC = (Calendar) takeoffTimeUTC.clone();
@@ -94,8 +97,7 @@ public class FlightTimeCalculationResultsFragment extends Fragment {
 
 		//
 		flightTimeResult.setText( flightTime.toString() );
-
-		//
+		blockTimeResult.setText( blockTime.toString() );
 		takeoffTimeUTCResult.setText( String.format( "%02d:%02d", takeoffTimeUTC.get( Calendar.HOUR_OF_DAY ), takeoffTimeUTC.get( Calendar.MINUTE ) ) );
 		landingTimeUTCResult.setText( String.format( "%02d:%02d", landingTimeUTC.get( Calendar.HOUR_OF_DAY ), landingTimeUTC.get( Calendar.MINUTE ) ) );
 		offBlockTimeUTCResult.setText( String.format( "%02d:%02d", offBlockTimeUTC.get( Calendar.HOUR_OF_DAY ), offBlockTimeUTC.get( Calendar.MINUTE ) ) );

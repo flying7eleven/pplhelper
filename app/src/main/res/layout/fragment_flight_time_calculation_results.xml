@@ -41,6 +41,33 @@
         <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
+                android:text="Block time"
+                style="@style/TextAppearance.EditEvent_LabelSmall"/>
+
+        <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="-6dip"
+                android:animateLayoutChanges="false">
+
+            <EditText
+                    android:id="@+id/block_time_result"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:enabled="false"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="64dip">
+
+        <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
                 android:text="Takeoff time (UTC)"
                 style="@style/TextAppearance.EditEvent_LabelSmall"/>
 
