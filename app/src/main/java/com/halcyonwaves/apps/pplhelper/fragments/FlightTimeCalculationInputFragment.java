@@ -3,10 +3,12 @@ package com.halcyonwaves.apps.pplhelper.fragments;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -93,6 +95,13 @@ public class FlightTimeCalculationInputFragment extends Fragment {
 				if ( !flightHoursAfter.after( flightHoursBefore ) ) {
 					// TODO: show a message why we cannot proceed here
 					return;
+				}
+
+				// be sure that the keyboard is hidden before we proceed
+				View currentFocus = FlightTimeCalculationInputFragment.this.getActivity().getCurrentFocus();
+				if ( null != currentFocus ) {
+					final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService( Context.INPUT_METHOD_SERVICE );
+					imm.hideSoftInputFromWindow( currentFocus.getWindowToken(), 0 );
 				}
 
 				// since all required values were set, calculate the results and show them on the next fragment
