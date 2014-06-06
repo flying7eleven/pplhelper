@@ -7,5 +7,10 @@
     <string name="takeoff_time_local">Takeoff time (local)</string>
     <string name="calculate_results">Calculate results</string>
     <string name="current_time">%1$02d:%2$02d</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string-array name="app_categories_array">
+        <item>Flight time</item>
+    </string-array>
 
 </resources>
