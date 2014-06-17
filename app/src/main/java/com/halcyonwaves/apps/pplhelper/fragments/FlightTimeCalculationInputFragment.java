@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +21,10 @@ import com.halcyonwaves.apps.pplhelper.R;
 import java.util.Calendar;
 
 public class FlightTimeCalculationInputFragment extends Fragment {
+	private static final String FLIGHTIME_PREVIOUS_FLIGHT_HOURS_BEFORE = "flightime.previous.flight_hours_before";
+	private static final String FLIGHTIME_PREVIOUS_FLIGHT_HOURS_AFTER = "flightime.previous.flight_hours_after";
 	private OnFragmentInteractionListener mListener;
+	private SharedPreferences mSharedPrefs;
 	private TextView mFlightHoursBefore;
 	private TextView mFlightHoursAfter;
 	private Button mSelectTakeoffTime;
@@ -60,6 +65,30 @@ public class FlightTimeCalculationInputFragment extends Fragment {
 
 		// set the initial text for the time control
 		this.mSelectTakeoffTime.setText( String.format( this.getString( R.string.current_time ), this.mLastHourOfTheDay, this.mLastMinute ) );
+
+		// as soon as the user has entered the flight hours before, store them for later use
+		this.mFlightHoursBefore.setOnFocusChangeListener( new View.OnFocusChangeListener() {
+			@Override
+			public void onFocusChange( View v, boolean hasFocus ) {
+				if ( !hasFocus ) {
+					SharedPreferences.Editor prefEdit = FlightTimeCalculationInputFragment.this.mSharedPrefs.edit();
+					prefEdit.putString( FLIGHTIME_PREVIOUS_FLIGHT_HOURS_BEFORE, FlightTimeCalculationInputFragment.this.mFlightHoursBefore.getText().toString() );
+					prefEdit.commit();
+				}
+			}
+		} );
+
+		// as soon as the user has entered the flight hours after, store them for later use
+		this.mFlightHoursAfter.setOnFocusChangeListener( new View.OnFocusChangeListener() {
+			@Override
+			public void onFocusChange( View v, boolean hasFocus ) {
+				if ( !hasFocus ) {
+					SharedPreferences.Editor prefEdit = FlightTimeCalculationInputFragment.this.mSharedPrefs.edit();
+					prefEdit.putString( FLIGHTIME_PREVIOUS_FLIGHT_HOURS_AFTER, FlightTimeCalculationInputFragment.this.mFlightHoursAfter.getText().toString() );
+					prefEdit.commit();
+				}
+			}
+		} );
 
 		// setup the button which is used to select the takeoff time
 		this.mSelectTakeoffTime.setOnClickListener( new View.OnClickListener() {
@@ -110,6 +139,21 @@ public class FlightTimeCalculationInputFragment extends Fragment {
 				}
 			}
 		} );
+
+		// get the shared preferences for the application
+		this.mSharedPrefs = PreferenceManager.getDefaultSharedPreferences( this.getActivity() );
+
+		// get the values stored in the preferences
+		final String flightHoursBefore = this.mSharedPrefs.getString( FLIGHTIME_PREVIOUS_FLIGHT_HOURS_BEFORE, "" );
+		final String flightHoursAfter = this.mSharedPrefs.getString( FLIGHTIME_PREVIOUS_FLIGHT_HOURS_AFTER, "" );
+
+		// just set the pre-selected values if they where set before
+		if ( flightHoursBefore.length() > 0 ) {
+			this.mFlightHoursBefore.setText( flightHoursBefore );
+		}
+		if ( flightHoursAfter.length() > 0 ) {
+			this.mFlightHoursAfter.setText( flightHoursAfter );
+		}
 
 		// return the inflated view
 		return inflatedView;
